@@ -118,40 +118,6 @@
         <p>&copy; 2025 SereniTouch. All rights reserved.</p>
     </footer>
 
-    <script>
-        // Handle form submission and show booking details/confirmation
-        document.getElementById("bookingForm").addEventListener("submit", function(event) {
-            event.preventDefault(); // Prevent form from refreshing the page
-
-            // Gather form values
-            const name = document.getElementById("name").value;
-            const email = document.getElementById("email").value;
-            const phone = document.getElementById("phone").value;
-            const date = document.getElementById("date").value;
-            const services = Array.from(document.getElementById("service").selectedOptions)
-                .map(option => option.text)
-                .join(", ");
-            const notes = document.getElementById("notes").value;
-
-            // For demonstration, we'll just show the success message
-            document.getElementById("bookingDetails").style.display = "none"; // Hide the summary
-            document.getElementById("bookingSuccess").style.display = "block"; // Show the confirmation
-
-            // Populate the confirmation message
-            document.getElementById("successName").textContent = name;
-            document.getElementById("successEmail").textContent = email;
-            document.getElementById("successPhone").textContent = phone;
-            document.getElementById("successServices").textContent = services;
-            document.getElementById("successDate").textContent = date;
-            document.getElementById("successNotes").textContent = notes || "None";
-
-            // Optionally, you can clear the form after successful submission
-            document.getElementById("bookingForm").reset();
-        });
-
-        function hideConfirmation() {
-            document.getElementById("bookingSuccess").style.display = "none";
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
