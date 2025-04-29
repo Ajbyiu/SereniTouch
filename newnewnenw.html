@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SereniTouch</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            background-color: #fff;
+            color: #333;
+        } 
+        header {
+            background-color: #f6f6f6;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+        } 
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        .logo-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+            object-fit: cover;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .logo-img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 12px rgba(0,0,0,0.2);
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1f2937;
+        }
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #1f2937;
+            font-weight: 500;
+            transition: color 0.3s, transform 0.3s;
+        }
+        nav a:hover {
+            color: #4b9c8e;
+            transform: translateY(-2px);
+        }
+        .hero {
+            height: 90vh;
+            background: url('https://massagemnl.com/cdn/shop/files/massagemnl.jpg?v=1614368749') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        section.services {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: auto;
+            text-align: center;
+        }
+        section.services h2 {
+            font-size: 2rem;
+            margin-bottom: 40px;
+        }
+        .service-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        .card {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        .card img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        .card h3 {
+            margin: 10px 0;
+        }
+        section.contact, section#booking {
+            padding: 60px 20px;
+            background-color: #f0f0f0;
+            text-align: center;
+        }
+        section.contact h2, section#booking h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+        footer {
+            background-color: #1f2937;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin-top: 0;
+        }
+        .booking-form {
+            max-width: 500px;
+            margin: 0 auto;
+            text-align: left;
+        }
+        .booking-form input, .booking-form select, .booking-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .booking-form button {
+            background-color: #4b9c8e;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .booking-form button:hover {
+            background-color: #3a857b;
+        }
+        .fade-in {
+            animation: fadeIn 1.2s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Styles for the booking confirmation container */
+        .booking-confirmation {
+            max-width: 600px;
+            margin: 30px auto;
+            padding: 30px;
+            background-color: #e9f5f3;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+            text-align: left;
+        }
+        .booking-confirmation h2 {
+            font-size: 2rem;
+            color: #3a857b;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .booking-confirmation p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+            color: #555;
+        }
+        .booking-confirmation strong {
+            font-weight: 600;
+            color: #333;
+        }
+        .booking-confirmation hr {
+            border: 1px solid #d1e7dd;
+            margin: 20px 0;
+        }
+        .booking-confirmation .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .booking-confirmation button {
+            background-color: #4b9c8e;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .booking-confirmation button:hover {
+            background-color: #3a857b;
+        }
+        #bookingList {
+    max-width: 800px;
+    margin: 40px auto; /* Increased margin for better spacing */
+    padding: 30px; /* Increased padding for a more spacious layout */
+    background-color: #f9f9f9; /* Light gray background for contrast */
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+#bookingList h3 {
+    text-align: center;
+    color: #1f2937;
+    font-size: 2rem; /* Slightly larger font size */
+    margin-bottom: 25px; /* Increased margin for better separation */
+    font-weight: 600;
+}
+
+#bookingSummary {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#bookingSummary li {
+    margin-bottom: 25px; /* Increased margin between cards */
+    padding: 25px; /* Increased padding inside each card */
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#bookingSummary li:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+#bookingSummary li h3 {
+    margin: 0 0 15px; /* Increased margin below the heading */
+    color: #4b9c8e;
+    font-size: 1.6rem; /* Slightly larger font size for headings */
+}
+
+#bookingSummary li p {
+    margin: 8px 0; /* Increased spacing between paragraphs */
+    font-size: 1rem;
+    color: #555;
+}
+
+#bookingSummary li button {
+    margin-top: 20px; /* Increased margin above the button */
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 12px 20px; /* Increased padding for a larger button */
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#bookingSummary li button:hover {
+    background-color: #e04343;
+    transform: scale(1.05);
+}
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="https://tse4.mm.bing.net/th?id=OIP.fnC5A3JGeiwi7GMOESVuTAAAAA&pid=Api&P=0&h=180" alt="SereniTouch Logo" class="logo-img">
+            <div class="logo">SereniTouch</div>
+        </div>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#services">Services</a>
+            <a href="#contact">Contact</a>
+            <a href="#booking">Book Now</a>
+        </nav>
+    </header>
+
+    <div class="hero fade-in" id="home">
+        <h1>Relax, Rejuvenate, Recharge</h1>
+    </div>
+
+    <section class="services fade-in" id="services">
+        <h2>Our Massage Services</h2>
+        <div class="service-cards">
+            <div class="card">
+                <img src="https://img.lb.wbmdstatic.com/vim/live/webmd/consumer_assets/site_images/article_thumbnails/reference_guide/what_is_a_swedish_massage_ref_guide/1800x1200_what_is_a_swedish_massage_ref_guide.jpg?resize=750px:*&output-quality=75" alt="Swedish Massage">
+                <h3>Swedish Massage</h3>
+                <p>Gentle and relaxing strokes to ease tension and improve circulation.</p>
+            </div>
+            <div class="card">
+                <img src="https://tse4.mm.bing.net/th?id=OIP.xr9ZbxI6JTzOKUux4UDVswHaE8&pid=Api&P=0&h=180" alt="Shiatsu">
+                <h3>Shiatsu</h3>
+                <p>Japanese finger-pressure technique to release blocked energy.</p>
+            </div>
+            <div class="card">
+                <img src="https://tse3.mm.bing.net/th?id=OIP.SHSBxawYao1eKcNOjJIE8gHaE7&pid=Api&P=0&h=180" alt="Deep Tissue">
+                <h3>Deep Tissue</h3>
+                <p>Targets deeper layers of muscles for chronic aches and tension.</p>
+            </div>
+            <div class="card">
+                <img src="https://tse1.mm.bing.net/th?id=OIP.bgp6P7bKI9jit-PeMFOdQAHaE8&pid=Api&P=0&h=180" alt="Ventosa Therapy">
+                <h3>Ventosa Therapy</h3>
+                <p>Cupping therapy that improves blood flow and relieves pain.</p>
+            </div>
+            <div class="card">
+                <img src="https://tse4.mm.bing.net/th?id=OIP.JPLx3yHm5aq7AHGE3VTx2QHaE7&pid=Api&P=0&h=180" alt="Prenatal Massage">
+                <h3>Prenatal Massage</h3>
+                <p>Designed to support mothers-to-be, easing pregnancy discomforts.</p>
+            </div>
+            <div class="card">
+                <img src="https://tse2.mm.bing.net/th?id=OIP.XbrEqvIYQ3V52klZbehvygHaE8&pid=Api&P=0&h=180" alt="Khozy Package">
+                <h3>Khozy Package</h3>
+                <p>Full spa treatment at home with oils, aromas, and massage therapy.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact fade-in" id="contact">
+        <h2>Contact Us</h2>
+        <p>Email: sereniTouch@gmail.com</p>
+        <p>Phone: 09124651919</p>
+        <p>Available in Bohol, Philippines</p>
+    </section>
+
+    <section id="booking" class="fade-in">
+        <h2>Book a Massage</h2>
+        <form class="booking-form" id="bookingForm">
+            <label for="name">Full Name</label>
+            <input type="text" name="name" id="name" placeholder="Enter your full name" required 
+                pattern="^[A-Za-z\s.]+$" 
+                title="Name can only contain letters, spaces, and periods." />
+            <p id="nameError" style="color: red; font-size: 0.9rem; display: none;">This name has already been used for a booking. Please use a different name.</p>
+    
+            <label for="email">Email Address</label>
+            <input type="email" name="email" id="email" placeholder="Enter your email address" required />
+    
+            <label for="phone">Phone Number</label>
+            <input type="tel" name="phone" id="phone" placeholder="Enter your phone number" required pattern="[0-9]{11}" title="Please enter a valid 10-digit phone number" />
+           
+            <div id="services" style="display: flex; flex-direction: column; gap: 15px;">
+                <label style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                    <span>Select All</span>
+                    <input type="checkbox" id="selectAll">
+                </label>
+                <label style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                    <span>Swedish Massage - ₱500</span>
+                    <input type="checkbox" class="service-checkbox" name="service" value="Swedish Massage" data-price="500">
+                </label>
+                <label style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                    <span>Shiatsu - ₱600</span>
+                    <input type="checkbox" class="service-checkbox" name="service" value="Shiatsu" data-price="600">
+                </label>
+                <label style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                    <span>Deep Tissue - ₱700</span>
+                    <input type="checkbox" class="service-checkbox" name="service" value="Deep Tissue" data-price="700">
+                </label>
+                <label style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                    <span>Ventosa Therapy - ₱800</span>
+                    <input type="checkbox" class="service-checkbox" name="service" value="Ventosa Therapy" data-price="800">
+                </label>
+                <label style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                    <span>Prenatal Massage - ₱900</span>
+                    <input type="checkbox" class="service-checkbox" name="service" value="Prenatal Massage" data-price="900">
+                </label>
+                <label style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                    <span>Khozy Package - ₱1,000</span>
+                    <input type="checkbox" class="service-checkbox" name="service" value="Khozy Package" data-price="1000">
+                </label>
+            </div>
+            <p><strong>Total Amount: ₱<span id="totalAmount">0</span></strong></p>
+            <label for="date">Preferred Date</label>
+            <input type="date" name="date" id="date" required min="<?= date('Y-m-d') ?>" />
+    
+            <label for="notes">Special Requests (Optional)</label>
+            <textarea name="notes" id="notes" placeholder="Enter any special requests"></textarea>
+    
+            <button type="submit">Book Now</button>
+        </form>
+        <div id="bookingList" style="margin-top: 30px;">
+            <h3>All Bookings</h3>
+            <ul id="bookingSummary" style="list-style-type: none; padding: 0;"></ul>
+            <p><strong>Total Amount for All Bookings: ₱<span id="totalBookingsAmount">0.00</span></strong></p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 SereniTouch. All rights reserved.</p>
+    </footer>
+
+    <script>
+    const bookings = []; // Array to store multiple bookings
+    document.getElementById("bookingForm").addEventListener("submit", function (event) {
+    event.preventDefault(); // Prevent page refresh
+
+    // Gather form values
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const date = document.getElementById("date").value;
+    const notes = document.getElementById("notes").value.trim();
+    const nameError = document.getElementById("nameError");
+
+    // Get selected services
+    const services = Array.from(document.querySelectorAll('input[name="service"]:checked'))
+        .map(checkbox => checkbox.value)
+        .join(", ");
+
+    // Check for duplicate names
+    if (bookings.some(booking => booking.name.toLowerCase() === name.toLowerCase())) {
+        nameError.style.display = "block"; // Show the error message
+        return;
+    } else {
+        nameError.style.display = "none"; // Hide the error message if the name is unique
+    }
+
+    // Validate inputs
+    if (!name || !email || !phone || !services || !date) {
+        alert("Please fill out all required fields.");
+        return;
+    }
+
+    // Add booking to the array
+    bookings.push({ name, email, phone, services, date, notes });
+
+    // Update the booking summary
+    updateBookingSummary();
+
+    // Reset the form
+    document.getElementById("bookingForm").reset();
+});
+function updateBookingSummary() {
+    const bookingSummary = document.getElementById("bookingSummary");
+    bookingSummary.innerHTML = ""; // Clear the current list
+
+    bookings.forEach((booking, index) => {
+        // Calculate the total amount for this booking
+        let bookingTotal = 0;
+        const services = booking.services.split(", ");
+        services.forEach(service => {
+            switch (service) {
+                case "Swedish Massage":
+                    bookingTotal += 500;
+                    break;
+                case "Shiatsu":
+                    bookingTotal += 600;
+                    break;
+                case "Deep Tissue":
+                    bookingTotal += 700;
+                    break;
+                case "Ventosa Therapy":
+                    bookingTotal += 800;
+                    break;
+                case "Prenatal Massage":
+                    bookingTotal += 900;
+                    break;
+                case "Khozy Package":
+                    bookingTotal += 1000;
+                    break;
+            }
+        });
+
+        // Create the booking summary item
+        const listItem = document.createElement("li");
+        listItem.innerHTML = `
+            <h3>Booking ${index + 1}</h3>
+            <p><strong>Name:</strong> ${booking.name}</p>
+            <p><strong>Email:</strong> ${booking.email}</p>
+            <p><strong>Phone:</strong> ${booking.phone}</p>
+            <p><strong>Services:</strong> ${booking.services}</p>
+            <p><strong>Date:</strong> ${booking.date}</p>
+            <p><strong>Special Requests:</strong> ${booking.notes || "None"}</p>
+            <p><strong>Total Amount for This Booking:</strong> ₱${bookingTotal.toFixed(2)}</p>
+            <button onclick="removeBooking(${index})">Remove</button>
+        `;
+        bookingSummary.appendChild(listItem);
+    });
+
+    // Calculate and update the total amount for all bookings
+    calculateTotalBookingsAmount();
+}
+
+    // Function to remove a booking
+    function removeBooking(index) {
+        bookings.splice(index, 1); // Remove the booking from the array
+        updateBookingSummary(); // Update the summary
+    }
+</script>
+<script>
+    const selectAllCheckbox = document.getElementById("selectAll");
+    const serviceCheckboxes = document.querySelectorAll(".service-checkbox");
+    const totalAmountElement = document.getElementById("totalAmount");
+
+    // Function to calculate the total amount
+    function calculateTotal() {
+        let total = 0;
+        serviceCheckboxes.forEach(checkbox => {
+            if (checkbox.checked) {
+                total += parseFloat(checkbox.getAttribute("data-price"));
+            }
+        });
+        totalAmountElement.textContent = total.toFixed(2); // Update the total amount
+    }
+
+    // Add event listener to "Select All" checkbox
+    selectAllCheckbox.addEventListener("change", function () {
+        serviceCheckboxes.forEach(checkbox => {
+            checkbox.checked = selectAllCheckbox.checked;
+        });
+        calculateTotal(); // Recalculate total when "Select All" is toggled
+    });
+
+    // Add event listeners to individual checkboxes to update the total
+    serviceCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener("change", function () {
+            selectAllCheckbox.checked = Array.from(serviceCheckboxes).every(cb => cb.checked);
+            calculateTotal(); // Recalculate total when individual checkboxes are toggled
+        });
+    });
+    function calculateTotalBookingsAmount() {
+    let totalAmount = 0;
+
+    bookings.forEach(booking => {
+        const services = booking.services.split(", ");
+        services.forEach(service => {
+            switch (service) {
+                case "Swedish Massage":
+                    totalAmount += 500;
+                    break;
+                case "Shiatsu":
+                    totalAmount += 600;
+                    break;
+                case "Deep Tissue":
+                    totalAmount += 700;
+                    break;
+                case "Ventosa Therapy":
+                    totalAmount += 800;
+                    break;
+                case "Prenatal Massage":
+                    totalAmount += 900;
+                    break;
+                case "Khozy Package":
+                    totalAmount += 1000;
+                    break;
+            }
+        });
+    });
+
+    document.getElementById("totalBookingsAmount").textContent = totalAmount.toFixed(2);
+}
+</script>
+
+</body>
+</html> 
