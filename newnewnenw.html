@@ -347,35 +347,66 @@
             <label for="phone">Phone Number</label>
             <input type="tel" name="phone" id="phone" placeholder="Enter your phone number" required pattern="[0-9]{11}" title="Please enter a valid 10-digit phone number" />
            
-            <div id="services" style="display: flex; flex-direction: column; gap: 15px;">
-                <label style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+            <div id="services" style="margin-top: 20px;">
+                <label for="selectAll" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
                     <span>Select All</span>
                     <input type="checkbox" id="selectAll">
                 </label>
-                <label style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
-                    <span>Swedish Massage - ₱500</span>
-                    <input type="checkbox" class="service-checkbox" name="service" value="Swedish Massage" data-price="500">
-                </label>
-                <label style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
-                    <span>Shiatsu - ₱600</span>
-                    <input type="checkbox" class="service-checkbox" name="service" value="Shiatsu" data-price="600">
-                </label>
-                <label style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
-                    <span>Deep Tissue - ₱700</span>
-                    <input type="checkbox" class="service-checkbox" name="service" value="Deep Tissue" data-price="700">
-                </label>
-                <label style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
-                    <span>Ventosa Therapy - ₱800</span>
-                    <input type="checkbox" class="service-checkbox" name="service" value="Ventosa Therapy" data-price="800">
-                </label>
-                <label style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
-                    <span>Prenatal Massage - ₱900</span>
-                    <input type="checkbox" class="service-checkbox" name="service" value="Prenatal Massage" data-price="900">
-                </label>
-                <label style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
-                    <span>Khozy Package - ₱1,000</span>
-                    <input type="checkbox" class="service-checkbox" name="service" value="Khozy Package" data-price="1000">
-                </label>
+    
+                <!-- Table for services -->
+                <table id="servicesTable" style="width: 100%; margin-top: 20px; border-collapse: collapse; text-align: left;">
+                    <thead>
+                        <tr>
+                            <th style="padding: 10px; border: 1px solid #ddd;">Service</th>
+                            <th style="padding: 10px; border: 1px solid #ddd;">Price</th>
+                            <th style="padding: 10px; border: 1px solid #ddd;">Select</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid #ddd;">Swedish Massage</td>
+                            <td style="padding: 10px; border: 1px solid #ddd;">₱500</td>
+                            <td style="padding: 10px; border: 1px solid #ddd;">
+                                <input type="checkbox" class="service-checkbox" name="service" value="Swedish Massage" data-price="500">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid #ddd;">Shiatsu</td>
+                            <td style="padding: 10px; border: 1px solid #ddd;">₱600</td>
+                            <td style="padding: 10px; border: 1px solid #ddd;">
+                                <input type="checkbox" class="service-checkbox" name="service" value="Shiatsu" data-price="600">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid #ddd;">Deep Tissue</td>
+                            <td style="padding: 10px; border: 1px solid #ddd;">₱700</td>
+                            <td style="padding: 10px; border: 1px solid #ddd;">
+                                <input type="checkbox" class="service-checkbox" name="service" value="Deep Tissue" data-price="700">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid #ddd;">Ventosa Therapy</td>
+                            <td style="padding: 10px; border: 1px solid #ddd;">₱800</td>
+                            <td style="padding: 10px; border: 1px solid #ddd;">
+                                <input type="checkbox" class="service-checkbox" name="service" value="Ventosa Therapy" data-price="800">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid #ddd;">Prenatal Massage</td>
+                            <td style="padding: 10px; border: 1px solid #ddd;">₱900</td>
+                            <td style="padding: 10px; border: 1px solid #ddd;">
+                                <input type="checkbox" class="service-checkbox" name="service" value="Prenatal Massage" data-price="900">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid #ddd;">Khozy Package</td>
+                            <td style="padding: 10px; border: 1px solid #ddd;">₱1,000</td>
+                            <td style="padding: 10px; border: 1px solid #ddd;">
+                                <input type="checkbox" class="service-checkbox" name="service" value="Khozy Package" data-price="1000">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
             <p><strong>Total Amount: ₱<span id="totalAmount">0</span></strong></p>
             <label for="date">Preferred Date</label>
