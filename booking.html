@@ -1,429 +1,459 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Booking Page</title>
-    <style>
-        
-        body {
-           margin: 0;
-           font-family: 'Montserrat', sans-serif;
-           background-color: #fff;
-           color: #333;
-    }
-
-        section#booking {
-            padding: 60px 20px;
-            background-color: #f9f5f0;
-            text-align: center;
-        }
-        section#booking h2 {
-            font-size: 2.5rem;
-            margin-bottom: 30px;
-            color: #4b9c8e;
-            font-weight: 700;
-        }
-        .booking-form {
-            max-width: 600px;
-            margin: 0 auto;
-            text-align: left;
-            background-color: #ffffff;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-        }
-        .booking-form label {
-            font-size: 1rem;
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 5px;
-            display: block;
-        }
-        .booking-form input, .booking-form select, .booking-form textarea {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 20px;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-            font-size: 1rem;
-            color: #555;
-        }
-        .booking-form button {
-            background-color: #4b9c8e;
-            color: white;
-            padding: 12px 25px;
-            border: none;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.3s ease, transform 0.2s ease;
-        }
-        .booking-form button:hover {
-            background-color: #bfa76f;
-            transform: scale(1.05);
-        }
-        #bookingList {
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 40px;
-            background-color: #ffffff;
-            border-radius: 15px;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-        }
-        #bookingList h3 {
-            text-align: center;
-            color: #4b9c8e;
-            font-size: 2rem;
-            margin-bottom: 30px;
-            font-weight: 700;
-        }
-        #bookingSummary {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-        }
-        #bookingSummary li {
-            margin-bottom: 25px;
-            padding: 25px;
-            border: 1px solid #ddd;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            background-color: #f9f9f9;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        #bookingSummary li:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-        }
-        #bookingSummary li h3 {
-            margin: 0 0 15px;
-            color: #4b9c8e;
-            font-size: 1.6rem;
-            font-weight: 600;
-        }
-        #bookingSummary li p {
-            margin: 8px 0;
-            font-size: 1rem;
-            color: #555;
-        }
-        #bookingSummary li button {
-            margin-top: 20px;
-            background-color: #ff4d4d;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1rem;
-            font-weight: 600;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        }
-        #bookingSummary li button:hover {
-            background-color: #e04343;
-            transform: scale(1.05);
-        }
-        #totalBookingsAmount {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: #4b9c8e;
-        }
-        html {
-            scroll-behavior: smooth;
-        }
-        body {
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Booking Page</title>
+        <style>
+            
+            body {
             margin: 0;
             font-family: 'Montserrat', sans-serif;
             background-color: #fff;
             color: #333;
         }
-        header {
-            background-color: #f6f6f6;
-            padding: 20px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 999;
-        }
-        .logo-container {
-            display: flex;
-            align-items: center;
-        }
-        .logo-img {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            margin-right: 15px;
-            object-fit: cover;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .logo-img:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 12px rgba(0,0,0,0.2);
-        }
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #1f2937;
-        }
-        nav a {
-            margin: 0 15px;
-            text-decoration: none;
-            color: #1f2937;
-            font-weight: 500;
-            transition: color 0.3s, transform 0.3s;
-        }
-        nav a:hover {
-            color: #4b9c8e;
-            transform: translateY(-2px);
-        }
-    </style>
-</head>
-<header>
-    <div class="logo-container">
-        <img src="https://tse4.mm.bing.net/th?id=OIP.fnC5A3JGeiwi7GMOESVuTAAAAA&pid=Api&P=0&h=180" alt="SereniTouch Logo" class="logo-img">
-        <div class="logo">SereniTouch</div>
-    </div>
-    <nav>
-        <a href="#home">Home</a>
-        <a href="Services.html">Services</a>
-        <a href="#contact">Contact</a>
-        <a href="sign-up register.html">Log In / Sign Up</a>
-        <a href="booking.html">Book Now</a>
-        <a href="#" onclick="adminLogin()">Admin</a>
-    </nav>
-</header>
 
-<body>
-    <div id="confirmationModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.5); z-index:999;">
-        <div style="background:#fff; max-width:500px; margin:100px auto; padding:30px; border-radius:10px; position:relative;">
-          <h3 style="color:#4b9c8e;">Confirm Your Booking</h3>
-          <div id="confirmationDetails" style="margin-top:20px;"></div>
-          <div style="margin-top:20px; text-align:right;">
-            <button id="confirmBooking" style="background:#4b9c8e; color:#fff; padding:10px 20px; border:none; border-radius:5px; margin-right:10px;">Confirm</button>
-            <button onclick="document.getElementById('confirmationModal').style.display='none'" style="background:#ccc; padding:10px 20px; border:none; border-radius:5px;">Cancel</button>
-          </div>
+            section#booking {
+                padding: 60px 20px;
+                background-color: #f9f5f0;
+                text-align: center;
+            }
+            section#booking h2 {
+                font-size: 2.5rem;
+                margin-bottom: 30px;
+                color: #4b9c8e;
+                font-weight: 700;
+            }
+            .booking-form {
+                max-width: 600px;
+                margin: 0 auto;
+                text-align: left;
+                background-color: #ffffff;
+                padding: 40px;
+                border-radius: 15px;
+                box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            }
+            .booking-form label {
+                font-size: 1rem;
+                font-weight: 600;
+                color: #333;
+                margin-bottom: 5px;
+                display: block;
+            }
+            .booking-form input, .booking-form select, .booking-form textarea {
+                width: 100%;
+                padding: 12px;
+                margin-bottom: 20px;
+                border-radius: 8px;
+                border: 1px solid #ccc;
+                font-size: 1rem;
+                color: #555;
+            }
+            .booking-form button {
+                background-color: #4b9c8e;
+                color: white;
+                padding: 12px 25px;
+                border: none;
+                border-radius: 8px;
+                font-size: 1.1rem;
+                font-weight: 600;
+                cursor: pointer;
+                transition: background 0.3s ease, transform 0.2s ease;
+            }
+            .booking-form button:hover {
+                background-color: #bfa76f;
+                transform: scale(1.05);
+            }
+            #bookingList {
+                max-width: 800px;
+                margin: 50px auto;
+                padding: 40px;
+                background-color: #ffffff;
+                border-radius: 15px;
+                box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            }
+            #bookingList h3 {
+                text-align: center;
+                color: #4b9c8e;
+                font-size: 2rem;
+                margin-bottom: 30px;
+                font-weight: 700;
+            }
+            #bookingSummary {
+                list-style-type: none;
+                padding: 0;
+                margin: 0;
+            }
+            #bookingSummary li {
+                margin-bottom: 25px;
+                padding: 25px;
+                border: 1px solid #ddd;
+                border-radius: 12px;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+                background-color: #f9f9f9;
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+            #bookingSummary li:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            }
+            #bookingSummary li h3 {
+                margin: 0 0 15px;
+                color: #4b9c8e;
+                font-size: 1.6rem;
+                font-weight: 600;
+            }
+            #bookingSummary li p {
+                margin: 8px 0;
+                font-size: 1rem;
+                color: #555;
+            }
+            #bookingSummary li button {
+                margin-top: 20px;
+                background-color: #ff4d4d;
+                color: white;
+                border: none;
+                padding: 12px 20px;
+                border-radius: 8px;
+                cursor: pointer;
+                font-size: 1rem;
+                font-weight: 600;
+                transition: background-color 0.3s ease, transform 0.2s ease;
+            }
+            #bookingSummary li button:hover {
+                background-color: #e04343;
+                transform: scale(1.05);
+            }
+            #totalBookingsAmount {
+                font-size: 1.2rem;
+                font-weight: 700;
+                color: #4b9c8e;
+            }
+            html {
+                scroll-behavior: smooth;
+            }
+            body {
+                margin: 0;
+                font-family: 'Montserrat', sans-serif;
+                background-color: #fff;
+                color: #333;
+            }
+            header {
+                background-color: #f6f6f6;
+                padding: 20px 40px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                position: sticky;
+                top: 0;
+                z-index: 999;
+            }
+            .logo-container {
+                display: flex;
+                align-items: center;
+            }
+            .logo-img {
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                margin-right: 15px;
+                object-fit: cover;
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+            .logo-img:hover {
+                transform: scale(1.1);
+                box-shadow: 0 0 12px rgba(0,0,0,0.2);
+            }
+            .logo {
+                font-size: 1.5rem;
+                font-weight: 600;
+                color: #1f2937;
+            }
+            nav a {
+                margin: 0 15px;
+                text-decoration: none;
+                color: #1f2937;
+                font-weight: 500;
+                transition: color 0.3s, transform 0.3s;
+            }
+            nav a:hover {
+                color: #4b9c8e;
+                transform: translateY(-2px);
+            }
+        </style>
+    </head>
+    <header>
+        <div class="logo-container">
+            <img src="https://tse4.mm.bing.net/th?id=OIP.fnC5A3JGeiwi7GMOESVuTAAAAA&pid=Api&P=0&h=180" alt="SereniTouch Logo" class="logo-img">
+            <div class="logo">SereniTouch</div>
         </div>
-      </div>
-      
-    <section id="booking">
-        <h2>Book a Massage</h2>
-        <form class="booking-form" id="bookingForm">
-            <label for="name">Full Name</label>
-            <input type="text" name="name" id="name" placeholder="Enter your full name" required 
-                pattern="^[A-Za-z\s.]+$" 
-                title="Name can only contain letters, spaces, and periods." />
-            <p id="nameError" style="color: red; font-size: 0.9rem; display: none;">This name has already been used for a booking. Please use a different name.</p>
-    
-            <label for="email">Email Address</label>
-            <input type="email" name="email" id="email" placeholder="Enter your email address" required />
-    
-            <label for="phone">Phone Number</label>
-            <input type="tel" name="phone" id="phone" placeholder="Enter your phone number" required pattern="[0-9]{11}" title="Please enter a valid 11-digit phone number" />
-           
-            <div id="services" style="margin-top: 20px;">
-                <label for="selectAll" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
-                    <span>Select All</span>
-                    <input type="checkbox" id="selectAll">
-                </label>
-    
-                <!-- Table for services -->
-                <table id="servicesTable" style="width: 100%; margin-top: 20px; border-collapse: collapse; text-align: left;">
-                    <thead>
-                        <tr>
-                            <th style="padding: 10px; border: 1px solid #ddd;">Service</th>
-                            <th style="padding: 10px; border: 1px solid #ddd;">Price</th>
-                            <th style="padding: 10px; border: 1px solid #ddd;">Select</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td style="padding: 10px; border: 1px solid #ddd;">Swedish Massage</td>
-                            <td style="padding: 10px; border: 1px solid #ddd;">₱500</td>
-                            <td style="padding: 10px; border: 1px solid #ddd;">
-                                <input type="checkbox" class="service-checkbox" name="service" value="Swedish Massage" data-price="500">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 10px; border: 1px solid #ddd;">Shiatsu</td>
-                            <td style="padding: 10px; border: 1px solid #ddd;">₱600</td>
-                            <td style="padding: 10px; border: 1px solid #ddd;">
-                                <input type="checkbox" class="service-checkbox" name="service" value="Shiatsu" data-price="600">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 10px; border: 1px solid #ddd;">Deep Tissue</td>
-                            <td style="padding: 10px; border: 1px solid #ddd;">₱700</td>
-                            <td style="padding: 10px; border: 1px solid #ddd;">
-                                <input type="checkbox" class="service-checkbox" name="service" value="Deep Tissue" data-price="700">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 10px; border: 1px solid #ddd;">Ventosa Therapy</td>
-                            <td style="padding: 10px; border: 1px solid #ddd;">₱800</td>
-                            <td style="padding: 10px; border: 1px solid #ddd;">
-                                <input type="checkbox" class="service-checkbox" name="service" value="Ventosa Therapy" data-price="800">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 10px; border: 1px solid #ddd;">Prenatal Massage</td>
-                            <td style="padding: 10px; border: 1px solid #ddd;">₱900</td>
-                            <td style="padding: 10px; border: 1px solid #ddd;">
-                                <input type="checkbox" class="service-checkbox" name="service" value="Prenatal Massage" data-price="900">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 10px; border: 1px solid #ddd;">Khozy Package</td>
-                            <td style="padding: 10px; border: 1px solid #ddd;">₱1,000</td>
-                            <td style="padding: 10px; border: 1px solid #ddd;">
-                                <input type="checkbox" class="service-checkbox" name="service" value="Khozy Package" data-price="1000">
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <button id="showSummary">Show Summary</button>
+        <nav>
+            <a href="home massage.html">Home</a>
+            <a href="Services.html">Services</a>
+            <a href="#contact">Contact</a>
+            <a href="sign-up register.html">Log In / Sign Up</a>
+            <a href="booking.html">Book Now</a>
+            
+            <a href="#" onclick="adminLogin()">Admin</a>
+        </nav>
+    </header>
 
+    <body>
+        <div id="confirmationModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.5); z-index:999;">
+            <div style="background:#fff; max-width:500px; margin:100px auto; padding:30px; border-radius:10px; position:relative;">
+            <h3 style="color:#4b9c8e;">Confirm Your Booking</h3>
+            <div id="confirmationDetails" style="margin-top:20px;"></div>
+            <div style="margin-top:20px; text-align:right;">
+                <button id="confirmBooking" style="background:#4b9c8e; color:#fff; padding:10px 20px; border:none; border-radius:5px; margin-right:10px;">Confirm</button>
+                <button onclick="document.getElementById('confirmationModal').style.display='none'" style="background:#ccc; padding:10px 20px; border:none; border-radius:5px;">Cancel</button>
             </div>
-            <p><strong>Total Amount: ₱<span id="totalAmount">0</span></strong></p>
-            <label for="date">Preferred Date</label>
-            <input type="date" name="date" id="date" required />
-
-            <label for="time">Preferred Time</label>
-            <input type="time" id="time" required>
-    
-            <label for="notes">Special Requests (Optional)</label>
-            <textarea name="notes" id="notes" placeholder="Enter any special requests"></textarea>
-    
-            <button type="submit">Book Now</button>
-        </form>
-        <div id="thankYouMessage" style="display:none; text-align:center; padding:40px;"></div>
-       
-        
-    </section>
-
-    <script>
-        let bookings = JSON.parse(localStorage.getItem('bookings')) || [];
-
-        document.getElementById("bookingForm").addEventListener("submit", function (event) {
-    event.preventDefault();
-
-    const name = document.getElementById("name").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const phone = document.getElementById("phone").value.trim();
-    const date = document.getElementById("date").value;
-    const time = document.getElementById("time").value;
-    const notes = document.getElementById("notes").value.trim();
-    const nameError = document.getElementById("nameError");
-
-    const checkedServices = Array.from(document.querySelectorAll('input[name="service"]:checked'));
-    const services = checkedServices.map(cb => cb.value).join(", ");
-    const serviceDetails = checkedServices.map(cb => `${cb.value} - ₱${cb.dataset.price}`).join("<br>");
-
-    let total = checkedServices.reduce((sum, cb) => sum + parseFloat(cb.dataset.price), 0);
-
-    if (bookings.some(booking => booking.name.toLowerCase() === name.toLowerCase())) {
-        nameError.style.display = "block";
-        return;
-    } else {
-        nameError.style.display = "none";
-    }
-
-    if (!name || !email || !phone || !services || !date || !time) {
-        alert("Please fill out all required fields.");
-        return;
-    }
-
-    // Populate confirmation modal
-    const confirmationHTML = `
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Phone:</strong> ${phone}</p>
-        <p><strong>Selected Services:</strong><br>${serviceDetails}</p>
-        <p><strong>Total:</strong> ₱${total.toFixed(2)}</p>
-        <p><strong>Date & Time:</strong> ${date} ${time}</p>
-        <p><strong>Special Requests:</strong> ${notes || "None"}</p>
-    `;
-    document.getElementById("confirmationDetails").innerHTML = confirmationHTML;
-    document.getElementById("confirmationModal").style.display = "block";
-
-    document.getElementById("confirmBooking").onclick = function () {
-        alert("Your booking has been confirmed!");  
-    const bookingID = "KHZ" + Math.floor(100 + Math.random() * 900); // Generates random ID like KHZ123
-    bookings.push({ name, email, phone, date, time, services, notes });
-    localStorage.setItem('bookings', JSON.stringify(bookings));
-    const successMessage = `
-        <div style="text-align:center; padding:40px; background-color:#ffffff; border-radius:15px; box-shadow:0 6px 15px rgba(0,0,0,0.1);">
-            <h2 style="color:#4b9c8e;">Thank you, ${name}!</h2>
-            <p style="font-size:1.2rem; color:#555;">Your booking has been received.</p>
-            <p style="font-size:1.1rem; margin-top:20px;">We look forward to seeing you on <strong>${date}</strong> at <strong>${time}</strong>.</p>
-            <p style="font-size:1.1rem; margin-top:10px;">Your Booking ID: <strong>#${bookingID}</strong></p>
-             <button id="bookAgainBtn" style="margin-top:30px; background:#4b9c8e; color:white; padding:12px 25px; border:none; border-radius:8px; font-size:1.1rem; font-weight:600; cursor:pointer;">Book Again</button>
-             <button id="goHomeBtn" style="margin:20px; padding:10px 20px; font-size:1rem;">Go Home</button>
+            </div>
         </div>
-    `;
-    document.getElementById("booking").innerHTML = successMessage;
-    document.getElementById("confirmationModal").style.display = "none";
-document.getElementById("bookAgainBtn").addEventListener("click", function() {
-    location.reload(); 
-});
-   
-document.getElementById("goHomeBtn").addEventListener("click", function() {
-    window.location.href = "home massage.html"; // replace with your homepage URL
-});
-   
-};
-
-});
-
-    </script>
-    <script src="booking.js" defer></script>
-    <script src="connfirm.js" defer></script>
-
-    <!-- Other content above here -->
-
-<script defer>
-    document.getElementById("showSummary")?.addEventListener("click", function () {
-        const summaryBox = document.getElementById("confirmationDetails");
-        summaryBox.innerHTML = ""; // Clear previous
         
-        const selectedServices = Array.from(document.querySelectorAll(".service-checkbox:checked"));
-        if (selectedServices.length === 0) {
-            summaryBox.innerHTML = "<p>No services selected.</p>";
+        <section id="booking">
+            <h2>Book a Massage</h2>
+            <form class="booking-form" id="bookingForm">
+                <label for="name">Full Name</label>
+                <input type="text" name="name" id="name" placeholder="Enter your full name" required 
+                    pattern="^[A-Za-z\s.]+$" 
+                    title="Name can only contain letters, spaces, and periods." />
+                <p id="nameError" style="color: red; font-size: 0.9rem; display: none;">This name has already been used for a booking. Please use a different name.</p>
+        
+                <label for="email">Email Address</label>
+                <input type="email" name="email" id="email" placeholder="Enter your email address" required />
+        
+                <label for="phone">Phone Number</label>
+<input type="tel" name="phone" id="phone" placeholder="Enter your phone number" required pattern="[0-9]{11}" title="Please enter a valid 11-digit phone number" />
+<p id="phoneError" style="color: red; font-size: 0.9rem; display: none;">Phone number must be at least 11 digits.</p>
+            
+                <div id="services" style="margin-top: 20px;">
+                    <label for="selectAll" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                        <span>Select All</span>
+                        <input type="checkbox" id="selectAll">
+                    </label>
+        
+                    <!-- Table for services -->
+                    <table id="servicesTable" style="width: 100%; margin-top: 20px; border-collapse: collapse; text-align: left;">
+                        <thead>
+                            <tr>
+                                <th style="padding: 10px; border: 1px solid #ddd;">Service</th>
+                                <th style="padding: 10px; border: 1px solid #ddd;">Price</th>
+                                <th style="padding: 10px; border: 1px solid #ddd;">Select</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 10px; border: 1px solid #ddd;">Swedish Massage</td>
+                                <td style="padding: 10px; border: 1px solid #ddd;">₱500</td>
+                                <td style="padding: 10px; border: 1px solid #ddd;">
+                                    <input type="checkbox" class="service-checkbox" name="service" value="Swedish Massage" data-price="500">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border: 1px solid #ddd;">Shiatsu</td>
+                                <td style="padding: 10px; border: 1px solid #ddd;">₱600</td>
+                                <td style="padding: 10px; border: 1px solid #ddd;">
+                                    <input type="checkbox" class="service-checkbox" name="service" value="Shiatsu" data-price="600">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border: 1px solid #ddd;">Deep Tissue</td>
+                                <td style="padding: 10px; border: 1px solid #ddd;">₱700</td>
+                                <td style="padding: 10px; border: 1px solid #ddd;">
+                                    <input type="checkbox" class="service-checkbox" name="service" value="Deep Tissue" data-price="700">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border: 1px solid #ddd;">Ventosa Therapy</td>
+                                <td style="padding: 10px; border: 1px solid #ddd;">₱800</td>
+                                <td style="padding: 10px; border: 1px solid #ddd;">
+                                    <input type="checkbox" class="service-checkbox" name="service" value="Ventosa Therapy" data-price="800">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border: 1px solid #ddd;">Prenatal Massage</td>
+                                <td style="padding: 10px; border: 1px solid #ddd;">₱900</td>
+                                <td style="padding: 10px; border: 1px solid #ddd;">
+                                    <input type="checkbox" class="service-checkbox" name="service" value="Prenatal Massage" data-price="900">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border: 1px solid #ddd;">Khozy Package</td>
+                                <td style="padding: 10px; border: 1px solid #ddd;">₱1,000</td>
+                                <td style="padding: 10px; border: 1px solid #ddd;">
+                                    <input type="checkbox" class="service-checkbox" name="service" value="Khozy Package" data-price="1000">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button id="showSummary">Show Summary</button>
+
+                </div>
+                <p><strong>Total Amount: ₱<span id="totalAmount">0</span></strong></p>
+                <label for="date">Preferred Date</label>
+                <input type="date" name="date" id="date" required />
+
+                <label for="time">Preferred Time</label>
+                <input type="time" id="time" required>
+        
+                <label for="notes">Special Requests (Optional)</label>
+                <textarea name="notes" id="notes" placeholder="Enter any special requests"></textarea>
+        
+                <button type="submit">Book Now</button>
+            </form>
+            <div id="thankYouMessage" style="display:none; text-align:center; padding:40px;"></div>
+        
+            
+        </section>
+
+        <script>
+            let bookings = JSON.parse(localStorage.getItem('bookings')) || [];
+
+            document.getElementById("bookingForm").addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const phone = document.getElementById("phone").value.trim();
+        const date = document.getElementById("date").value;
+        const time = document.getElementById("time").value;
+        const notes = document.getElementById("notes").value.trim();
+        const nameError = document.getElementById("nameError");
+
+        const checkedServices = Array.from(document.querySelectorAll('input[name="service"]:checked'));
+        const services = checkedServices.map(cb => cb.value);
+        const serviceString = services.join(", ");
+        const serviceDetails = checkedServices.map(cb => `${cb.value} - ₱${cb.dataset.price}`).join("<br>");
+
+        let total = checkedServices.reduce((sum, cb) => sum + parseFloat(cb.dataset.price), 0);
+
+        if (bookings.some(booking => booking.name.toLowerCase() === name.toLowerCase())) {
+            nameError.style.display = "block";
+            return;
         } else {
-            selectedServices.forEach(service => {
-                const label = service.closest("tr").querySelector("td").textContent.trim();
-                summaryBox.innerHTML += `<p>${label} - ₱${parseFloat(service.dataset.price).toFixed(2)}</p>`;
-            });
+            nameError.style.display = "none";
         }
-    
-        document.getElementById("confirmationModal").style.display = "block"; // Open modal
+
+        if (!name || !email || !phone || !services || !date || !time) {
+            alert("Please fill out all required fields.");
+            return;
+        }
+         // Create the new booking object AND INCLUDE the 'service' property
+    const newBooking = {
+        name: name,
+        email: email,
+        phone: phone,
+        service: services, // ADD THIS LINE
+        date: date,
+        time: time,
+        notes: notes,
+        total: total
+    };
+
+    bookings.push(newBooking); // Add the new booking to the array
+    localStorage.setItem('bookings', JSON.stringify(bookings));
+
+        // Populate confirmation modal
+        const confirmationHTML = `
+            <p><strong>Name:</strong> ${name}</p>
+            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Phone:</strong> ${phone}</p>
+            <p><strong>Selected Services:</strong><br>${serviceDetails}</p>
+            <p><strong>Total:</strong> ₱${total.toFixed(2)}</p>
+            <p><strong>Date & Time:</strong> ${date} ${time}</p>
+            <p><strong>Special Requests:</strong> ${notes || "None"}</p>
+        `;
+        document.getElementById("confirmationDetails").innerHTML = confirmationHTML;
+        document.getElementById("confirmationModal").style.display = "block";
+
+        document.getElementById("confirmBooking").onclick = function () {
+            alert("Your booking has been confirmed!");  
+        const bookingID = "KHZ" + Math.floor(100 + Math.random() * 900); // Generates random ID like KHZ123
+        bookings.push({ name, email, phone, date, time, services, notes });
+        
+        const successMessage = `
+            <div style="text-align:center; padding:40px; background-color:#ffffff; border-radius:15px; box-shadow:0 6px 15px rgba(0,0,0,0.1);">
+                <h2 style="color:#4b9c8e;">Thank you, ${name}!</h2>
+                <p style="font-size:1.2rem; color:#555;">Your booking has been received.</p>
+                <p style="font-size:1.1rem; margin-top:20px;">We look forward to seeing you on <strong>${date}</strong> at <strong>${time}</strong>.</p>
+                <p style="font-size:1.1rem; margin-top:10px;">Your Booking ID: <strong>#${bookingID}</strong></p>
+                <button id="bookAgainBtn" style="margin-top:30px; background:#4b9c8e; color:white; padding:12px 25px; border:none; border-radius:8px; font-size:1.1rem; font-weight:600; cursor:pointer;">Book Again</button>
+                <button id="goHomeBtn" style="margin:20px; padding:10px 20px; font-size:1rem;">Go Home</button>
+            </div>
+        `;
+        document.getElementById("booking").innerHTML = successMessage;
+        document.getElementById("confirmationModal").style.display = "none";
+    document.getElementById("bookAgainBtn").addEventListener("click", function() {
+        location.reload(); 
     });
-    </script>
+    
+    document.getElementById("goHomeBtn").addEventListener("click", function() {
+        window.location.href = "home massage.html"; // replace with your homepage URL
+    });
+    
+    };
+
+    });
+
+        </script>
+        
+
+        <!-- Other content above here -->
+
+    <script defer>
+        document.getElementById("showSummary")?.addEventListener("click", function () {
+            const summaryBox = document.getElementById("confirmationDetails");
+            summaryBox.innerHTML = ""; // Clear previous
+            
+            const selectedServices = Array.from(document.querySelectorAll(".service-checkbox:checked"));
+            if (selectedServices.length === 0) {
+                summaryBox.innerHTML = "<p>No services selected.</p>";
+            } else {
+                selectedServices.forEach(service => {
+                    const label = service.closest("tr").querySelector("td").textContent.trim();
+                    summaryBox.innerHTML += `<p>${label} - ₱${parseFloat(service.dataset.price).toFixed(2)}</p>`;
+                });
+            }
+        
+            document.getElementById("confirmationModal").style.display = "block"; // Open modal
+        });
+        </script>
+
+
+        </body>
+        </html>
+        
+        <script src="confirm.js" defer></script>
+        <script src="booking.js" defer></script>
+
+
+        <script>
+            function adminLogin() {
+                const password = prompt("Enter admin password:");
+                const correctPassword = "admin123"; // Change this to your desired password
+                if (password === correctPassword) {
+                    window.location.href = "admin.html"; // Change to your admin page URL
+                } else {
+                    alert("Incorrect password.");
+                }
+            }
+        </script>
+<script>
+    const phoneInput = document.getElementById("phone");
+    const phoneError = document.getElementById("phoneError");
+
+    phoneInput.addEventListener("blur", function() {
+        const phoneValue = phoneInput.value.trim();
+        if (phoneValue && phoneValue.length < 11) {
+            phoneError.style.display = "block";
+        } else {
+            phoneError.style.display = "none";
+        }
+    });
+</script>
+
 
 
     </body>
     </html>
-    
-    <script src="confirm.js" defer></script>
-    <script src="booking.js" defer></script>
-
-    <script>
-        function adminLogin() {
-            const password = prompt("Enter admin password:");
-            const correctPassword = "admin123"; // Change this to your desired password
-            if (password === correctPassword) {
-                window.location.href = "admin.html"; // Change to your admin page URL
-            } else {
-                alert("Incorrect password.");
-            }
-        }
-    </script>
-
-
-
-</body>
-</html>
