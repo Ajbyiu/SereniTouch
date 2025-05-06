@@ -125,6 +125,24 @@
                 font-size: 1rem; /* Adjust text size for smaller screens */
             }
         }
+        header {
+    padding: 30px 60px; /* increase padding */
+}
+
+.logo {
+    font-size: 2rem; /* bigger logo text */
+}
+
+.logo-img {
+    width: 70px;
+    height: 70px;
+}
+
+nav a {
+    font-size: 2.0rem; /* bigger nav links */
+    margin: 0 20px; /* increase spacing */
+}
+
     </style>
 </head>
 <body>
@@ -134,19 +152,34 @@
             <div class="logo">SereniTouch</div>
         </div>
         <nav>
-            <a href="#home">Home</a>
-            <a href="#services">Services</a> <!-- Link to Services section -->
-            <a href="#contact">Contact</a>
+            <a href="home massage.html">Home</a>
+            <a href="Services.html">Services</a> <!-- Link to Services.html -->
+            <a href="home massage.html">Contact</a>
             <a href="sign-up register.html">Log In / Sign Up</a> <!-- Link to Sign-Up page -->
             <a href="booking.html">Book Now</a> <!-- Link to Booking.html -->
+            <a href="#" onclick="adminLogin()">Admin</a>
         </nav>
     </header>
+    
+    <script>
+        function adminLogin() {
+            const password = prompt("Enter admin password:");
+            const correctPassword = "admin123";
+            if (password === correctPassword) {
+                window.location.href = "admin.html"; // Redirect to admin page
+            } else {
+                alert("Incorrect password.");
+            }
+        }
+    </script>
+    
+    
 
     <section class="services fade-in" id="services">
         <h2>Our Massage Services</h2>
         <div class="service-cards">
             <div class="card">
-                <img src="https://img.lb.wbmdstatic.com/vim/live/webmd/consumer_assets/site_images/article_thumbnails/reference_guide/what_is_a_swedish_massage_ref_guide/1800x1200_what_is_a_swedish_massage_ref_guide.jpg?resize=750px:*&output-quality=75" alt="Swedish Massage">
+                <img src="https://tse1.mm.bing.net/th?id=OIP.k-HUNM1pcVU3nGD1ZpvbNgEsEB&pid=Api&P=0&h=180" alt="Swedish Massage">
                 <h3>Swedish Massage</h3>
                 <p>Gentle and relaxing strokes to ease tension and improve circulation.</p>
             </div>
@@ -178,4 +211,4 @@
         </div>
     </section>
 </body>
-</html> 
+</html>
